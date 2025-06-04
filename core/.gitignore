@@ -1,0 +1,11 @@
+# Arquivos sensíveis
+credentials.json
+.streamlit/secrets.toml
+
+# Output local
+__pycache__/
+*.py[cod]
+generated_pdfs/
+
+# Metadata
+*.egg-info/

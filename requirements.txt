@@ -1,0 +1,10 @@
+streamlit
+python-dotenv
+gspread
+oauth2client
+fpdf
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+pandas

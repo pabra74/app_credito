@@ -1,0 +1,26 @@
+lendismart_deploy/
+├── app/
+│   ├── main.py
+│   └── pages/
+│       ├── titular.py
+│       ├── empresa.py
+│       ├── bem.py
+│       ├── stand.py
+│       ├── simulador.py
+│       ├── proposta.py
+│       ├── propostas_gravadas.py
+│       ├── leads.py
+│       ├── decisao_financeira.py
+├── core/
+│   ├── sheets.py
+│   ├── drive_utils.py
+├── static/
+│   ├── logo.png
+│   └── fonts/
+│       └── Arial.ttf
+├── generated_pdfs/  ← Output PDFs
+├── .streamlit/
+│   └── config.toml
+├── requirements.txt
+├── README_DEPLOY.md
+└── .gitignore

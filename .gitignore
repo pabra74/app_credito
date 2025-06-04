@@ -1,0 +1,5 @@
+credentials.json
+.streamlit/secrets.toml
+generated_pdfs/
+__pycache__/
+*.py[cod]
