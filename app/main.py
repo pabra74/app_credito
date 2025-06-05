@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 # Modules from pages
-from app.titular import proposta_titular
+from pages.titular import proposta_titular
 from app.pages.empresa import run as run_empresa
 from app.pages.bem import run as run_bem
 from app.pages.stand import run as run_stand
