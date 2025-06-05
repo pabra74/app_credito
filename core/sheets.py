@@ -1,15 +1,19 @@
 import os
+import json
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
+from oauth2client.service_account import ServiceAccountCredentials
 
 def conectar_sheet():
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds_path = os.getenv("GOOGLE_CREDS_JSON_PATH", "credentials.json")
-    sheet_name = os.getenv("GOOGLE_SHEET_NAME", "LendismartDB")
-
-    creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
+    scope = [
+        'https://spreadsheets.google.com/feeds',
+        'https://www.googleapis.com/auth/drive'
+    ]
+    creds_json = os.getenv("GOOGLE_CREDS_JSON")
+    creds_dict = json.loads(creds_json)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
+    sheet_name = os.getenv("GOOGLE_SHEET_NAME")
     return client.open(sheet_name)
 
 def gravar_cliente(dados_df):
@@ -62,15 +66,6 @@ def gravar_lead(dados_dict):
     ws = sh.worksheet("Leads")
     ws.append_row(list(dados_dict.values()))
 
-def ler_propostas():
-    try:
-        sh = conectar_sheet()
-        ws = sh.worksheet("Propostas")
-        data = ws.get_all_records()
-        return pd.DataFrame(data)
-    except:
-        return pd.DataFrame()
-
 def gravar_decisao(dados_dict):
     sh = conectar_sheet()
     ws = sh.worksheet("Decisoes")
@@ -81,3 +76,12 @@ def ler_decisoes():
     ws = sh.worksheet("Decisoes")
     data = ws.get_all_records()
     return pd.DataFrame(data)
+
+def ler_propostas():
+    try:
+        sh = conectar_sheet()
+        ws = sh.worksheet("Propostas")
+        data = ws.get_all_records()
+        return pd.DataFrame(data)
+    except:
+        return pd.DataFrame()
