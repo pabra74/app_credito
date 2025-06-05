@@ -17,10 +17,15 @@ def conectar_sheet():
     return client.open(sheet_name)
 
 def gravar_cliente(dados_df):
+    # Limpeza defensiva
+    dados_df = dados_df.fillna("")  # Substitui NaNs por strings vazias
+    dados_df.columns = dados_df.columns.astype(str)  # Garante que os nomes são strings
+    dados_df = dados_df.astype(str)  # Converte todos os valores para string
+
     sh = conectar_sheet()
     ws = sh.worksheet("Clientes")
     ws.clear()
-    ws.update([dados_df.columns.values.tolist()] + dados_df.values.tolist())
+    ws.update([dados_df.columns.tolist()] + dados_df.values.tolist())
 
 def ler_clientes():
     sh = conectar_sheet()
